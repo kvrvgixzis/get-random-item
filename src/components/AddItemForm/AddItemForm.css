@@ -1,0 +1,20 @@
+.add-item-form {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  width: 80%;
+
+  margin: 16px auto;
+}
+
+.add-item-form__input,
+.add-item-form__submit {
+  font-size: 21px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.add-item-form__input {
+  margin-right: 8px;
+}

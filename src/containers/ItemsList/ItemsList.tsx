@@ -7,10 +7,10 @@ export const ItemsList: FC = () => {
   const { items, removeItem } = useContext(ItemsContext);
 
   return (
-    <div>
+    <>
       {items.map((item) => (
         <Item key={item.id} item={item} removeItem={removeItem} />
       ))}
-    </div>
+    </>
   );
 };

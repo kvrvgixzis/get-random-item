@@ -6,6 +6,7 @@ import {
 } from '@testing-library/react';
 import { Item } from './Item';
 import { v4 } from 'uuid';
+import { SELECTORS } from '../../constants/test-selectors';
 
 const MOCK_ITEM = {
   id: v4(),
@@ -15,16 +16,13 @@ const MOCK_ITEM = {
 
 afterEach(cleanup);
 
-const ITEM_NAME_SELECTOR = 'item__name';
-const ITEM_REMOVE_SELECTOR = 'item__remove';
-
 describe('item', () => {
   const removeItem = jest.fn();
 
   it('have name', () => {
     render(<Item item={MOCK_ITEM} removeItem={removeItem} />);
 
-    const itemNameElement = screen.getByTestId(ITEM_NAME_SELECTOR);
+    const itemNameElement = screen.getByTestId(SELECTORS.ITEM_NAME);
     expect(itemNameElement).toHaveTextContent(MOCK_ITEM.name);
   });
 
@@ -32,7 +30,7 @@ describe('item', () => {
     render(<Item item={MOCK_ITEM} removeItem={removeItem} />);
 
     const removeItemElement = screen.getByTestId(
-      ITEM_REMOVE_SELECTOR
+      SELECTORS.ITEM_REMOVE
     );
 
     fireEvent.click(removeItemElement);
@@ -43,7 +41,7 @@ describe('item', () => {
     render(<Item item={MOCK_ITEM} removeItem={removeItem} />);
 
     const removeItemElement = screen.getByTestId(
-      ITEM_REMOVE_SELECTOR
+      SELECTORS.ITEM_REMOVE
     );
 
     fireEvent.click(removeItemElement);

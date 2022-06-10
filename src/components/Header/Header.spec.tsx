@@ -1,16 +1,14 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { App } from '../../App';
+import { SELECTORS } from '../../constants/test-selectors';
 
 afterEach(cleanup);
-
-const HEADER_SELECTOR = 'header';
-const HEADER_TITLE_SELECTOR = 'header__title';
 
 describe('header', () => {
   it('render in app', () => {
     render(<App />);
 
-    const headerElement = screen.getByTestId(HEADER_SELECTOR);
+    const headerElement = screen.getByTestId(SELECTORS.HEADER);
     expect(headerElement).toBeInTheDocument();
   });
 
@@ -18,7 +16,7 @@ describe('header', () => {
     render(<App />);
 
     const headerTitleElement = screen.getByTestId(
-      HEADER_TITLE_SELECTOR
+      SELECTORS.HEADER_TITLE
     );
     expect(headerTitleElement).toHaveTextContent('Tasks');
   });

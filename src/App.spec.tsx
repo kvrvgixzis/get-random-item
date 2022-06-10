@@ -5,29 +5,29 @@ import {
   screen,
 } from '@testing-library/react';
 import { App } from './App';
-
-const FORM_SELECTOR = 'add-item-form';
-const INPUT_SELECTOR = 'add-item-form__input';
-const ITEM_NAME_SELECTOR = 'item__name';
-const ITEM_REMOVE_SELECTOR = 'item__remove';
+import { SELECTORS } from './constants/test-selectors';
 
 afterEach(cleanup);
+
+const TEST_ITEM_NAME = 'test name';
 
 describe('app', () => {
   it('add item', () => {
     render(<App />);
 
-    const addItemFormElement = screen.getByTestId(FORM_SELECTOR);
+    const addItemFormElement = screen.getByTestId(SELECTORS.FORM);
     const inputElement = screen.getByTestId(
-      INPUT_SELECTOR
+      SELECTORS.INPUT
     ) as HTMLInputElement;
 
-    fireEvent.input(inputElement, { target: { value: 'test name' } });
+    fireEvent.input(inputElement, {
+      target: { value: TEST_ITEM_NAME },
+    });
     fireEvent.submit(addItemFormElement);
 
-    const itemElements = screen.getAllByTestId(ITEM_NAME_SELECTOR);
+    const itemElements = screen.getAllByTestId(SELECTORS.ITEM_NAME);
     const newElement = itemElements.find(
-      (item) => item.textContent === 'test name'
+      (item) => item.textContent === TEST_ITEM_NAME
     );
 
     expect(newElement).toBeInTheDocument();
@@ -37,14 +37,14 @@ describe('app', () => {
     render(<App />);
 
     const removeItemElement = screen.getByTestId(
-      ITEM_REMOVE_SELECTOR
+      SELECTORS.ITEM_REMOVE
     );
     const itemNameElements = screen.getAllByTestId(
-      ITEM_NAME_SELECTOR
+      SELECTORS.ITEM_NAME
     );
 
     const targetElement = itemNameElements.find(
-      (item) => item.textContent === 'test name'
+      (item) => item.textContent === TEST_ITEM_NAME
     );
 
     expect(targetElement).toBeInTheDocument();

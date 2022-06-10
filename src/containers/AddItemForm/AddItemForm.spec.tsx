@@ -5,18 +5,16 @@ import {
   screen,
 } from '@testing-library/react';
 import { App } from '../../App';
+import { SELECTORS } from '../../constants/test-selectors';
 import { AddItemForm } from './AddItemForm';
 
 afterEach(cleanup);
-
-const FORM_SELECTOR = 'add-item-form';
-const INPUT_SELECTOR = 'add-item-form__input';
 
 describe('add item form', () => {
   it('render in app', () => {
     render(<App />);
 
-    const addItemFormElement = screen.getByTestId(FORM_SELECTOR);
+    const addItemFormElement = screen.getByTestId(SELECTORS.FORM);
 
     expect(addItemFormElement).toBeInTheDocument();
   });
@@ -25,7 +23,7 @@ describe('add item form', () => {
     render(<AddItemForm />);
 
     const inputElement = screen.getByTestId(
-      INPUT_SELECTOR
+      SELECTORS.INPUT
     ) as HTMLInputElement;
 
     fireEvent.input(inputElement, { target: { value: 'test name' } });
@@ -36,9 +34,9 @@ describe('add item form', () => {
   it('clear input on submit', () => {
     render(<AddItemForm />);
 
-    const addItemFormElement = screen.getByTestId(FORM_SELECTOR);
+    const addItemFormElement = screen.getByTestId(SELECTORS.FORM);
     const inputElement = screen.getByTestId(
-      INPUT_SELECTOR
+      SELECTORS.INPUT
     ) as HTMLInputElement;
 
     fireEvent.input(inputElement, { target: { value: 'test name' } });

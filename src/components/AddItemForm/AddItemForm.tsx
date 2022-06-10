@@ -1,4 +1,5 @@
 import { ChangeEventHandler, FC, FormEvent } from 'react';
+import { SELECTORS } from 'src/constants/test-selectors';
 
 import './AddItemForm.css';
 
@@ -19,11 +20,11 @@ export const AddItemForm: FC<FormProps> = ({
     <form
       onSubmit={onSubmit}
       className="add-item-form"
-      data-testid="add-item-form"
+      data-testid={SELECTORS.FORM}
     >
       <input
         className="add-item-form__input"
-        data-testid="add-item-form__input"
+        data-testid={SELECTORS.INPUT}
         type="text"
         value={value}
         placeholder={placeholder}
@@ -31,7 +32,7 @@ export const AddItemForm: FC<FormProps> = ({
       />
       <button
         className="add-item-form__submit"
-        data-testid="add-item-form__submit"
+        data-testid={SELECTORS.SUBMIT}
         type="submit"
       >
         Add

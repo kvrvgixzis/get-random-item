@@ -10,6 +10,8 @@ import { AddItemForm } from './AddItemForm';
 
 afterEach(cleanup);
 
+const TEST_ITEM_NAME = 'test name';
+
 describe('add item form', () => {
   it('render in app', () => {
     render(<App />);
@@ -26,9 +28,11 @@ describe('add item form', () => {
       SELECTORS.INPUT
     ) as HTMLInputElement;
 
-    fireEvent.input(inputElement, { target: { value: 'test name' } });
+    fireEvent.input(inputElement, {
+      target: { value: TEST_ITEM_NAME },
+    });
 
-    expect(inputElement.value).toBe('test name');
+    expect(inputElement.value).toBe(TEST_ITEM_NAME);
   });
 
   it('clear input on submit', () => {
@@ -39,8 +43,10 @@ describe('add item form', () => {
       SELECTORS.INPUT
     ) as HTMLInputElement;
 
-    fireEvent.input(inputElement, { target: { value: 'test name' } });
-    expect(inputElement.value).toBe('test name');
+    fireEvent.input(inputElement, {
+      target: { value: TEST_ITEM_NAME },
+    });
+    expect(inputElement.value).toBe(TEST_ITEM_NAME);
 
     fireEvent.submit(addItemFormElement);
     expect(inputElement.value).toBe('');
